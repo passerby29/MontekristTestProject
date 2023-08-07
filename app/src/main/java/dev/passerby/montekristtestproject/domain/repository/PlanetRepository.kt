@@ -9,4 +9,5 @@ interface PlanetRepository {
 
     fun getPlanetInfo(): LiveData<PlanetInfo>
 
+    fun loadPlanetData()
 }

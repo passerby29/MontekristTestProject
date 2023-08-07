@@ -9,4 +9,5 @@ interface StarshipRepository {
 
     fun getStarshipInfo(): LiveData<StarshipInfo>
 
+    fun loadStarshipData()
 }

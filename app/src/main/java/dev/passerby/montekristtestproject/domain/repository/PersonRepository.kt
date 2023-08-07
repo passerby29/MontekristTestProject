@@ -9,4 +9,5 @@ interface PersonRepository {
 
     fun getPersonInfo(): LiveData<PersonInfo>
 
+    fun loadPersonData()
 }

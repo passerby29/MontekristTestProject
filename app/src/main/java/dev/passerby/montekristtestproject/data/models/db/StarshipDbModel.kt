@@ -3,23 +3,23 @@ package dev.passerby.montekristtestproject.data.models.db
 import androidx.room.Entity
 
 @Entity(tableName = "starships")
-data class StarshipsDbModel(
+data class StarshipDbModel(
     val MGLT: String,
-    val cargo_capacity: String,
+    val cargoCapacity: String,
     val consumables: String,
-    val cost_in_credits: String,
+    val costInCredits: String,
     val created: String,
     val crew: String,
     val edited: String,
     val films: List<String>,
-    val hyperdrive_rating: String,
+    val hyperdriveRating: String,
     val length: String,
     val manufacturer: String,
-    val max_atmosphering_speed: String,
+    val maxAtmospheringSpeed: String,
     val model: String,
     val name: String,
     val passengers: String,
     val pilots: List<Any>,
-    val starship_class: String,
+    val starshipClass: String,
     val url: String
 )

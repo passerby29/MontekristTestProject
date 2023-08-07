@@ -15,6 +15,7 @@ class PersonRepositoryImpl(application: Application) : PersonRepository {
     private val personInfoDao = AppDatabase.getInstance(application).personInfoDao()
     private val apiService = ApiFactory.apiService
     private val personMapper = PersonMapper()
+    private val tag = "PersonRepositoryImpl"
 
     override fun getPersonInfoList(): LiveData<List<PersonInfo>> {
         val personInfoList = personInfoDao.getPersonInfoList()
@@ -37,11 +38,7 @@ class PersonRepositoryImpl(application: Application) : PersonRepository {
             val personDbModelList = personInfoDtoList.map { personMapper.mapDtoToDbModel(it) }
             personInfoDao.insertPersonInfoList(personDbModelList)
         } catch (e: Exception) {
-            Log.d(TAG, "loadPersonData: $e")
+            Log.d(tag, "loadPersonData: $e")
         }
-    }
-
-    companion object {
-        private const val TAG = "PersonRepositoryImpl"
     }
 }

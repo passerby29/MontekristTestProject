@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.tabs.TabLayoutMediator
 import dev.passerby.montekristtestproject.databinding.FragmentMainBinding
-import dev.passerby.montekristtestproject.presentation.adapters.PersonInfoAdapter
-import dev.passerby.montekristtestproject.presentation.viewmodels.MainViewModel
+import dev.passerby.montekristtestproject.presentation.adapters.MainViewPagerAdapter
 
 class MainFragment : Fragment() {
 
@@ -16,9 +15,11 @@ class MainFragment : Fragment() {
     private val binding: FragmentMainBinding
         get() = _binding ?: throw RuntimeException("FragmentMainBinding is null")
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
-    }
+    private val pagerArray = arrayOf(
+        "People",
+        "Planets",
+        "Starships"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,13 +31,14 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val personInfoAdapter = PersonInfoAdapter(requireContext())
-        binding.personRecyclerView.apply {
-            adapter = personInfoAdapter
-            itemAnimator = null
-        }
-        viewModel.personListInfo.observe(viewLifecycleOwner) {
-            personInfoAdapter.submitList(it)
+
+        binding.apply {
+            val adapter = MainViewPagerAdapter(parentFragmentManager, lifecycle)
+            viewPager.adapter = adapter
+
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = pagerArray[position]
+            }.attach()
         }
     }
 

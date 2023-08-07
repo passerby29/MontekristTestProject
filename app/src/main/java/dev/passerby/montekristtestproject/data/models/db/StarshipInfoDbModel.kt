@@ -21,7 +21,7 @@ data class StarshipInfoDbModel(
     @PrimaryKey
     val name: String,
     val passengers: String,
-    val pilots: List<Any>,
+    val pilots: List<String>,
     val starshipClass: String,
     val url: String
 )

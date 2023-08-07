@@ -13,7 +13,7 @@ interface StarshipInfoDao {
     @Query("select * from starships")
     fun getStarshipInfoList(): LiveData<List<StarshipInfoDbModel>>
 
-    @Query("select * from people where name = :name")
+    @Query("select * from starships where name = :name")
     fun getStarshipInfo(name: String): LiveData<StarshipInfoDbModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

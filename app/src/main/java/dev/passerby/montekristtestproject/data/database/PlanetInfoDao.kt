@@ -13,7 +13,7 @@ interface PlanetInfoDao {
     @Query("select * from planets")
     fun getPlanetInfoList(): LiveData<List<PlanetInfoDbModel>>
 
-    @Query("select * from people where name = :name")
+    @Query("select * from planets where name = :name")
     fun getPlanetInfo(name: String): LiveData<PlanetInfoDbModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

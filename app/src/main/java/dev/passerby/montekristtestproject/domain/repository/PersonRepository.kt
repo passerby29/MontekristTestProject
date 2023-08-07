@@ -7,7 +7,7 @@ interface PersonRepository {
 
     fun getPersonInfoList(): LiveData<List<PersonInfo>>
 
-    fun getPersonInfo(): LiveData<PersonInfo>
+    fun getPersonInfo(name: String): LiveData<PersonInfo>
 
-    fun loadPersonData()
+    suspend fun loadPersonData()
 }

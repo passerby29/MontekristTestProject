@@ -7,7 +7,7 @@ interface StarshipRepository {
 
     fun getStarshipInfoList(): LiveData<List<StarshipInfo>>
 
-    fun getStarshipInfo(): LiveData<StarshipInfo>
+    fun getStarshipInfo(name: String): LiveData<StarshipInfo>
 
-    fun loadStarshipData()
+    suspend fun loadStarshipData()
 }

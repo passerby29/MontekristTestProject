@@ -1,9 +1,10 @@
 package dev.passerby.montekristtestproject.data.models.db
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "starships")
-data class StarshipDbModel(
+data class StarshipInfoDbModel(
     val MGLT: String,
     val cargoCapacity: String,
     val consumables: String,
@@ -17,6 +18,7 @@ data class StarshipDbModel(
     val manufacturer: String,
     val maxAtmospheringSpeed: String,
     val model: String,
+    @PrimaryKey
     val name: String,
     val passengers: String,
     val pilots: List<Any>,

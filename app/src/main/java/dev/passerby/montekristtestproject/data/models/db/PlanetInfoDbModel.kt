@@ -1,6 +1,7 @@
 package dev.passerby.montekristtestproject.data.models.db
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "planets")
 data class PlanetInfoDbModel(
@@ -10,6 +11,7 @@ data class PlanetInfoDbModel(
     val edited: String,
     val films: List<String>,
     val gravity: String,
+    @PrimaryKey
     val name: String,
     val orbitalPeriod: String,
     val population: String,

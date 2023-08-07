@@ -1,12 +1,12 @@
 package dev.passerby.montekristtestproject.data.mapper
 
-import dev.passerby.montekristtestproject.data.models.db.StarshipDbModel
+import dev.passerby.montekristtestproject.data.models.db.StarshipInfoDbModel
 import dev.passerby.montekristtestproject.data.models.dto.StarshipInfoDto
 import dev.passerby.montekristtestproject.domain.models.StarshipInfo
 
 class StarshipMapper {
 
-    fun mapDtoToDbModel(dto: StarshipInfoDto) = StarshipDbModel(
+    fun mapDtoToDbModel(dto: StarshipInfoDto) = StarshipInfoDbModel(
         MGLT = dto.MGLT,
         cargoCapacity = dto.cargo_capacity,
         consumables = dto.consumables,
@@ -27,7 +27,7 @@ class StarshipMapper {
         url = dto.url,
     )
 
-    fun mapDbModelToEntity(dbModel: StarshipDbModel) = StarshipInfo(
+    fun mapDbModelToEntity(dbModel: StarshipInfoDbModel) = StarshipInfo(
         MGLT = dbModel.MGLT,
         cargoCapacity = dbModel.cargoCapacity,
         consumables = dbModel.consumables,

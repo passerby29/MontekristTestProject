@@ -6,10 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import dev.passerby.montekristtestproject.data.models.db.PersonInfoDbModel
 import dev.passerby.montekristtestproject.data.models.db.PlanetInfoDbModel
-import dev.passerby.montekristtestproject.data.models.db.StarshipDbModel
+import dev.passerby.montekristtestproject.data.models.db.StarshipInfoDbModel
 
 @Database(
-    entities = [PersonInfoDbModel::class, PlanetInfoDbModel::class, StarshipDbModel::class],
+    entities = [PersonInfoDbModel::class, PlanetInfoDbModel::class, StarshipInfoDbModel::class],
     version = 1,
     exportSchema = false
 )

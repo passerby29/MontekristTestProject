@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MontekristTestProject</string>
+    <string name="starships_template">number of manned starships: %s</string>
 </resources>

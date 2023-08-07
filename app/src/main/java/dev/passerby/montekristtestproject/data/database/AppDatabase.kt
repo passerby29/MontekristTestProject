@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import dev.passerby.montekristtestproject.data.models.db.PersonInfoDbModel
 import dev.passerby.montekristtestproject.data.models.db.PlanetInfoDbModel
 import dev.passerby.montekristtestproject.data.models.db.StarshipInfoDbModel
+import dev.passerby.montekristtestproject.domain.models.StarshipInfo
 
 @Database(
     entities = [PersonInfoDbModel::class, PlanetInfoDbModel::class, StarshipInfoDbModel::class],
@@ -32,4 +33,9 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
     }
+
+    //dao
+    abstract fun personInfoDao(): PersonInfoDao
+    abstract fun planetInfoDao(): PlanetInfoDao
+    abstract fun starshipInfoDao(): StarshipInfoDao
 }

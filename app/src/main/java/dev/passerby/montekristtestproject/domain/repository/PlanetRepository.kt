@@ -7,7 +7,7 @@ interface PlanetRepository {
 
     fun getPlanetInfoList(): LiveData<List<PlanetInfo>>
 
-    fun getPlanetInfo(): LiveData<PlanetInfo>
+    fun getPlanetInfo(name: String): LiveData<PlanetInfo>
 
-    fun loadPlanetData()
+    suspend fun loadPlanetData()
 }

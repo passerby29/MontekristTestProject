@@ -16,6 +16,6 @@ interface PlanetInfoDao {
     @Query("select * from planets where name = :name")
     fun getPlanetInfo(name: String): LiveData<PlanetInfoDbModel>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPlanetInfoList(planetInfoList: List<PlanetInfoDbModel>)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertPlanetInfo(planetInfo: PlanetInfoDbModel)
 }

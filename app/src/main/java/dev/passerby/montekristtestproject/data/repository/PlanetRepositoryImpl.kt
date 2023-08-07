@@ -15,6 +15,7 @@ class PlanetRepositoryImpl(application: Application) : PlanetRepository {
     private val planetInfoDao = AppDatabase.getInstance(application).planetInfoDao()
     private val apiService = ApiFactory.apiService
     private val planetMapper = PlanetMapper()
+    private val TAG = "PlanetRepositoryImpl"
 
     override fun getPlanetInfoList(): LiveData<List<PlanetInfo>> {
         val planetInfoList = planetInfoDao.getPlanetInfoList()
@@ -32,16 +33,13 @@ class PlanetRepositoryImpl(application: Application) : PlanetRepository {
     }
 
     override suspend fun loadPlanetData() {
-        try {
-            val planetInfoDtoList = apiService.getPlanetInfo()
-            val planetDbModelList = planetInfoDtoList.map { planetMapper.mapDtoToDbModel(it) }
-            planetInfoDao.insertPlanetInfoList(planetDbModelList)
-        } catch (e: Exception) {
-            Log.d(TAG, "loadPlanetData: $e")
+        for (i in 1 until 61) {
+            try {
+                val planetInfoDto = apiService.getPlanetInfo(i)
+                planetInfoDao.insertPlanetInfo(planetMapper.mapDtoToDbModel(planetInfoDto))
+            } catch (e: Exception) {
+                Log.d(TAG, "loadPlanetData: $e")
+            }
         }
-    }
-
-    companion object {
-        private const val TAG = "PlanetRepositoryImpl"
     }
 }

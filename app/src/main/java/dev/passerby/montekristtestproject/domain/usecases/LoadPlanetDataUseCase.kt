@@ -6,5 +6,5 @@ class LoadPlanetDataUseCase(
     private val repository: PlanetRepository
 ) {
 
-    operator fun invoke() = repository.loadPlanetData()
+    suspend operator fun invoke() = repository.loadPlanetData()
 }

@@ -4,16 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import dev.passerby.montekristtestproject.data.JsonConverters
 import dev.passerby.montekristtestproject.data.models.db.PersonInfoDbModel
 import dev.passerby.montekristtestproject.data.models.db.PlanetInfoDbModel
 import dev.passerby.montekristtestproject.data.models.db.StarshipInfoDbModel
-import dev.passerby.montekristtestproject.domain.models.StarshipInfo
 
 @Database(
     entities = [PersonInfoDbModel::class, PlanetInfoDbModel::class, StarshipInfoDbModel::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
+@TypeConverters(JsonConverters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {

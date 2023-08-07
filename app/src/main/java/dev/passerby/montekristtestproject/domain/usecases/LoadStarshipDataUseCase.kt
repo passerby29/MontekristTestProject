@@ -6,5 +6,5 @@ class LoadStarshipDataUseCase(
     private val repository: StarshipRepository
 ) {
 
-    operator fun invoke() = repository.loadStarshipData()
+    suspend operator fun invoke() = repository.loadStarshipData()
 }

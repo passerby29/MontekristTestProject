@@ -1,4 +1,4 @@
-package com.example.cryptoapp.data.repository
+package dev.passerby.montekristtestproject.data.models.dto
 
 data class PersonInfoDto(
     val birth_year: String,

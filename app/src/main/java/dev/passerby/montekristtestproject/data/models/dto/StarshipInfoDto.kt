@@ -1,8 +1,7 @@
-package com.example.cryptoapp.data.repository
+package dev.passerby.montekristtestproject.data.models.dto
 
 import androidx.room.Entity
 
-@Entity(tableName = "starships")
 data class StarshipInfoDto(
     val MGLT: String,
     val cargo_capacity: String,

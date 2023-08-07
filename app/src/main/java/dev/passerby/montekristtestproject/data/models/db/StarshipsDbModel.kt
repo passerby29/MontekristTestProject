@@ -1,5 +1,8 @@
 package dev.passerby.montekristtestproject.data.models.db
 
+import androidx.room.Entity
+
+@Entity(tableName = "starships")
 data class StarshipsDbModel(
     val MGLT: String,
     val cargo_capacity: String,

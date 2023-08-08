@@ -30,8 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:imeOptions="actionSearch"
-            android:inputType="number"
-            android:maxLength="8"
+            android:inputType="textPersonName"
             android:maxLines="1"
             android:singleLine="true"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />

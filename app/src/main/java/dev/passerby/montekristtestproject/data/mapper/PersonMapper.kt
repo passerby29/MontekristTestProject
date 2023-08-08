@@ -1,7 +1,9 @@
 package dev.passerby.montekristtestproject.data.mapper
 
 import dev.passerby.montekristtestproject.data.models.db.PersonInfoDbModel
+import dev.passerby.montekristtestproject.data.models.dto.PeopleSearchDto
 import dev.passerby.montekristtestproject.data.models.dto.PersonInfoDto
+import dev.passerby.montekristtestproject.domain.models.PeopleSearch
 import dev.passerby.montekristtestproject.domain.models.PersonInfo
 
 class PersonMapper {
@@ -43,4 +45,38 @@ class PersonMapper {
         url = dbModel.url,
         vehicles = dbModel.vehicles
     )
+
+    fun mapDtoToEntity(dto: PeopleSearchDto) = PeopleSearch(
+        count = dto.count,
+        next = dto.next,
+        previous = dto.previous,
+        results = mapDtoListToEntity(dto.results)
+    )
+
+    private fun mapDtoListToEntity(dto: List<PersonInfoDto>): List<PersonInfo> {
+        val info = mutableListOf<PersonInfo>()
+        for (dtoItem in dto) {
+            info.add(
+                PersonInfo(
+                    dtoItem.birth_year,
+                    dtoItem.created,
+                    dtoItem.edited,
+                    dtoItem.eye_color,
+                    dtoItem.films,
+                    dtoItem.gender,
+                    dtoItem.hair_color,
+                    dtoItem.height,
+                    dtoItem.homeworld,
+                    dtoItem.mass,
+                    dtoItem.name,
+                    dtoItem.skin_color,
+                    dtoItem.species,
+                    dtoItem.starships,
+                    dtoItem.url,
+                    dtoItem.vehicles,
+                )
+            )
+        }
+        return info
+    }
 }

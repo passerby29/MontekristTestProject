@@ -1,11 +1,17 @@
 package dev.passerby.montekristtestproject.presentation.viewmodels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import dev.passerby.montekristtestproject.Constants.TAG
 import dev.passerby.montekristtestproject.data.repository.PersonRepositoryImpl
 import dev.passerby.montekristtestproject.data.repository.PlanetRepositoryImpl
 import dev.passerby.montekristtestproject.data.repository.StarshipRepositoryImpl
+import dev.passerby.montekristtestproject.domain.models.PeopleSearch
+import dev.passerby.montekristtestproject.domain.usecases.GetPeopleSearchUseCase
 import dev.passerby.montekristtestproject.domain.usecases.GetPersonInfoListUseCase
 import dev.passerby.montekristtestproject.domain.usecases.GetPersonInfoUseCase
 import dev.passerby.montekristtestproject.domain.usecases.GetPlanetInfoListUseCase
@@ -25,6 +31,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val getPersonInfoListUseCase = GetPersonInfoListUseCase(personRepository)
     private val getPersonInfoUseCase = GetPersonInfoUseCase(personRepository)
+    private val getPeopleSearchUseCase = GetPeopleSearchUseCase(personRepository)
     private val loadPersonDataUseCase = LoadPersonDataUseCase(personRepository)
     private val getPlanetInfoListUseCase = GetPlanetInfoListUseCase(planetRepository)
     private val getPlanetInfoUseCase = GetPlanetInfoUseCase(planetRepository)
@@ -36,6 +43,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val personListInfo = getPersonInfoListUseCase()
     val planetListInfo = getPlanetInfoListUseCase()
     val starshipListInfo = getStarshipInfoListUseCase()
+    private val _peopleSearch = MutableLiveData<PeopleSearch?>()
+    val peopleSearch: LiveData<PeopleSearch?>
+        get() = _peopleSearch
 
     fun getPersonInfo(name: String) = getPersonInfoUseCase(name)
     fun getPlanetInfo(name: String) = getPlanetInfoUseCase(name)
@@ -47,5 +57,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             loadPlanetDataUseCase()
             loadStarshipDataUseCase()
         }
+        Log.d(TAG, "init: ${peopleSearch.value}")
+    }
+
+    fun getPeopleSearch(searchParam: String) = viewModelScope.launch {
+        _peopleSearch.value = getPeopleSearchUseCase(searchParam)
     }
 }

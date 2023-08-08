@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardUseCompatPadding="true">
+    app:cardElevation="8dp"
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,11 +12,12 @@
 
         <TextView
             android:id="@+id/starshipNameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="28sp"
-            android:layout_marginTop="16dp"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:layout_margin="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,12 +25,13 @@
             tools:text="Death Star" />
 
         <TextView
-            android:id="@+id/tvSymbols"
-            android:layout_width="wrap_content"
+            android:id="@+id/starshipModelTextView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:textColor="@color/black"
             android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/starshipNameTextView"
             tools:text="@string/starship_model_template" />
@@ -44,7 +45,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSymbols"
+            app:layout_constraintTop_toBottomOf="@+id/starshipModelTextView"
             tools:text="@string/starship_manufacturer_template" />
 
         <TextView
@@ -57,7 +58,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/starshipManufacturerTextView"
-            tools:text="@string/passengers_template" />
+            tools:text="@string/starship_passengers_template" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

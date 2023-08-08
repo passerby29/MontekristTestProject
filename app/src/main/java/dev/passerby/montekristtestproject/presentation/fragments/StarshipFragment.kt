@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.passerby.montekristtestproject.databinding.FragmentStarshipBinding
-import dev.passerby.montekristtestproject.presentation.adapters.PersonInfoAdapter
+import dev.passerby.montekristtestproject.presentation.adapters.starship.StarshipInfoAdapter
 import dev.passerby.montekristtestproject.presentation.viewmodels.MainViewModel
 
 class StarshipFragment : Fragment() {
@@ -31,15 +31,15 @@ class StarshipFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val personInfoAdapter = PersonInfoAdapter(requireContext())
+        val starshipInfoAdapter = StarshipInfoAdapter(requireContext())
         binding.starshipRecyclerView.apply {
-            adapter = personInfoAdapter
+            adapter = starshipInfoAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             itemAnimator = null
         }
-        viewModel.personListInfo.observe(viewLifecycleOwner) {
-            personInfoAdapter.submitList(it)
+        viewModel.starshipListInfo.observe(viewLifecycleOwner) {
+            starshipInfoAdapter.submitList(it)
         }
     }
 

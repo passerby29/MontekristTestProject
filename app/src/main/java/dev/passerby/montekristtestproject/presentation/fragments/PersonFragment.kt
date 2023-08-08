@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.passerby.montekristtestproject.databinding.FragmentPersonBinding
-import dev.passerby.montekristtestproject.presentation.adapters.PersonInfoAdapter
+import dev.passerby.montekristtestproject.presentation.adapters.person.PersonInfoAdapter
 import dev.passerby.montekristtestproject.presentation.viewmodels.MainViewModel
 
 class PersonFragment : Fragment() {

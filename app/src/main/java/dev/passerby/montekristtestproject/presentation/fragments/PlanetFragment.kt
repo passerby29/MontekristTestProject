@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.passerby.montekristtestproject.databinding.FragmentPlanetBinding
-import dev.passerby.montekristtestproject.presentation.adapters.PersonInfoAdapter
+import dev.passerby.montekristtestproject.presentation.adapters.planet.PlanetInfoAdapter
 import dev.passerby.montekristtestproject.presentation.viewmodels.MainViewModel
 
 class PlanetFragment : Fragment() {
@@ -31,15 +31,15 @@ class PlanetFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val personInfoAdapter = PersonInfoAdapter(requireContext())
+        val planetInfoAdapter = PlanetInfoAdapter(requireContext())
         binding.planetRecyclerView.apply {
-            adapter = personInfoAdapter
+            adapter = planetInfoAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             itemAnimator = null
         }
-        viewModel.personListInfo.observe(viewLifecycleOwner) {
-            personInfoAdapter.submitList(it)
+        viewModel.planetListInfo.observe(viewLifecycleOwner) {
+            planetInfoAdapter.submitList(it)
         }
     }
 

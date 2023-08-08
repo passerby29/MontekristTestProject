@@ -1,4 +1,4 @@
-package dev.passerby.montekristtestproject.presentation.adapters
+package dev.passerby.montekristtestproject.presentation.adapters.person
 
 import android.content.Context
 import android.view.LayoutInflater

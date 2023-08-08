@@ -3,6 +3,7 @@
     <string name="starships_template">number of manned starships: %s</string>
     <color name="text_color_add">#80393939</color>
     <color name="text_color_main">#393939</color>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="passengers_template">Passengers: 843342</string>
+    <string name="starship_manufacturer_template">Manufacturer: %s</string>
+    <string name="starship_model_template">Model: %s</string>
 </resources>

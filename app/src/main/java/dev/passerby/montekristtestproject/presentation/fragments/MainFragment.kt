@@ -51,18 +51,19 @@ class MainFragment : Fragment() {
                     start: Int,
                     count: Int,
                     after: Int
-                ) {
-                }
+                ) {}
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     val searchText = s?.trim().toString()
                     if (searchText.length > 1) {
-                        viewModel.getPeopleSearch(searchText)
+                        with(viewModel) {
+                            getPeopleSearch(searchText)
+                            getPlanetsSearch(searchText)
+                        }
                     }
                 }
 
-                override fun afterTextChanged(s: Editable?) {
-                }
+                override fun afterTextChanged(s: Editable?) {}
             })
         }
     }

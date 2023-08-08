@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.passerby.montekristtestproject.R
 import dev.passerby.montekristtestproject.databinding.FragmentPlanetBinding
 import dev.passerby.montekristtestproject.presentation.adapters.planet.PlanetInfoAdapter
 import dev.passerby.montekristtestproject.presentation.viewmodels.MainViewModel
@@ -17,10 +19,7 @@ class PlanetFragment : Fragment() {
     private val binding: FragmentPlanetBinding
         get() = _binding ?: throw RuntimeException("FragmentPlanetBinding is null")
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
-    }
-
+    private val viewModel: MainViewModel by navGraphViewModels(R.id.navigation_main)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,8 +37,8 @@ class PlanetFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             itemAnimator = null
         }
-        viewModel.planetListInfo.observe(viewLifecycleOwner) {
-            planetInfoAdapter.submitList(it)
+        viewModel.planetsSearch.observe(viewLifecycleOwner) {
+            planetInfoAdapter.submitList(it?.results)
         }
     }
 

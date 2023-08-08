@@ -2,9 +2,14 @@ package dev.passerby.montekristtestproject.data.mapper
 
 import dev.passerby.montekristtestproject.data.models.db.PersonInfoDbModel
 import dev.passerby.montekristtestproject.data.models.db.PlanetInfoDbModel
+import dev.passerby.montekristtestproject.data.models.dto.PeopleSearchDto
+import dev.passerby.montekristtestproject.data.models.dto.PersonInfoDto
 import dev.passerby.montekristtestproject.data.models.dto.PlanetInfoDto
+import dev.passerby.montekristtestproject.data.models.dto.PlanetsSearchDto
+import dev.passerby.montekristtestproject.domain.models.PeopleSearch
 import dev.passerby.montekristtestproject.domain.models.PersonInfo
 import dev.passerby.montekristtestproject.domain.models.PlanetInfo
+import dev.passerby.montekristtestproject.domain.models.PlanetsSearch
 
 class PlanetMapper {
 
@@ -41,4 +46,35 @@ class PlanetMapper {
         terrain = dbModel.terrain,
         url = dbModel.url,
     )
+
+    fun mapDtoToEntity(dto: PlanetsSearchDto) = PlanetsSearch(
+        count = dto.count,
+        next = dto.next,
+        previous = dto.previous,
+        results = mapDtoListToEntity(dto.results)
+    )
+
+    private fun mapDtoListToEntity(dto: List<PlanetInfoDto>): List<PlanetInfo> {
+        val info = mutableListOf<PlanetInfo>()
+        for (dtoItem in dto) {
+            info.add(
+                PlanetInfo(
+                    dtoItem.climate,
+                    dtoItem.created,
+                    dtoItem.diameter,
+                    dtoItem.edited,
+                    dtoItem.films,
+                    dtoItem.gravity,
+                    dtoItem.name,
+                    dtoItem.orbital_period,
+                    dtoItem.population,
+                    dtoItem.residents,
+                    dtoItem.rotation_period,
+                    dtoItem.surface_water,
+                    dtoItem.terrain,
+                    dtoItem.url,)
+            )
+        }
+        return info
+    }
 }

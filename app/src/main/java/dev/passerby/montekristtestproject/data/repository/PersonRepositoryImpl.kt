@@ -35,7 +35,6 @@ class PersonRepositoryImpl(application: Application) : PersonRepository {
 
     override suspend fun getPeopleSearch(searchParam: String): PeopleSearch {
         val peopleSearch = apiService.getPeopleSearch(searchParam)
-        Log.d(TAG, "getPeopleSearch: $peopleSearch")
         return personMapper.mapDtoToEntity(peopleSearch)
     }
 

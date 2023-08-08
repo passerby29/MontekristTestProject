@@ -6,5 +6,5 @@ class GetStarshipInfoUseCase(
     private val repository: StarshipRepository
 ) {
 
-    operator fun invoke() = repository.getStarshipInfo()
+    operator fun invoke(name: String) = repository.getStarshipInfo(name)
 }

@@ -6,5 +6,5 @@ class LoadPersonDataUseCase(
     private val repository: PersonRepository
 ) {
 
-    operator fun invoke() = repository.loadPersonData()
+    suspend operator fun invoke() = repository.loadPersonData()
 }

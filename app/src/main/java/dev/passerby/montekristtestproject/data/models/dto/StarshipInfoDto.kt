@@ -18,7 +18,7 @@ data class StarshipInfoDto(
     val model: String,
     val name: String,
     val passengers: String,
-    val pilots: List<Any>,
+    val pilots: List<String>,
     val starship_class: String,
     val url: String
 )

@@ -15,6 +15,7 @@ class StarshipRepositoryImpl(application: Application) : StarshipRepository {
     private val starshipInfoDao = AppDatabase.getInstance(application).starshipInfoDao()
     private val apiService = ApiFactory.apiService
     private val starshipMapper = StarshipMapper()
+    private val TAG = "StarshipRepositoryImpl"
 
     override fun getStarshipInfoList(): LiveData<List<StarshipInfo>> {
         val starshipInfoList = starshipInfoDao.getStarshipInfoList()
@@ -32,16 +33,13 @@ class StarshipRepositoryImpl(application: Application) : StarshipRepository {
     }
 
     override suspend fun loadStarshipData() {
-        try {
-            val starshipInfoDtoList = apiService.getStarshipInfo()
-            val starshipDbModelList = starshipInfoDtoList.map { starshipMapper.mapDtoToDbModel(it) }
-            starshipInfoDao.insertStarshipInfoList(starshipDbModelList)
-        } catch (e: Exception) {
-            Log.d(TAG, "loadStarshipData: $e")
+        for (i in 1 until 37) {
+            try {
+                val starshipInfoDto = apiService.getStarshipInfo(i)
+                starshipInfoDao.insertStarshipInfo(starshipMapper.mapDtoToDbModel(starshipInfoDto))
+            } catch (e: Exception) {
+                Log.d(TAG, "loadStarshipData: $e")
+            }
         }
-    }
-
-    companion object {
-        private const val TAG = "StarshipRepositoryImpl"
     }
 }

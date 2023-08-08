@@ -15,6 +15,7 @@ class PersonRepositoryImpl(application: Application) : PersonRepository {
     private val personInfoDao = AppDatabase.getInstance(application).personInfoDao()
     private val apiService = ApiFactory.apiService
     private val personMapper = PersonMapper()
+    private val TAG = "PersonRepositoryImpl"
 
     override fun getPersonInfoList(): LiveData<List<PersonInfo>> {
         val personInfoList = personInfoDao.getPersonInfoList()
@@ -32,16 +33,13 @@ class PersonRepositoryImpl(application: Application) : PersonRepository {
     }
 
     override suspend fun loadPersonData() {
-        try {
-            val personInfoDtoList = apiService.getPersonInfo()
-            val personDbModelList = personInfoDtoList.map { personMapper.mapDtoToDbModel(it) }
-            personInfoDao.insertPersonInfoList(personDbModelList)
-        } catch (e: Exception) {
-            Log.d(TAG, "loadPersonData: $e")
+        for (i in 1 until 83) {
+            try {
+                val personInfoDto = apiService.getPersonInfo(i)
+                personInfoDao.insertPersonInfo(personMapper.mapDtoToDbModel(personInfoDto))
+            } catch (e: Exception) {
+                Log.d(TAG, "loadPersonData: $e")
+            }
         }
-    }
-
-    companion object {
-        private const val TAG = "PersonRepositoryImpl"
     }
 }

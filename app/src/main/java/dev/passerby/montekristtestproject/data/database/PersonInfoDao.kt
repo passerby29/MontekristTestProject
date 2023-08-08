@@ -16,6 +16,6 @@ interface PersonInfoDao {
     @Query("select * from people where name = :name")
     fun getPersonInfo(name: String): LiveData<PersonInfoDbModel>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPersonInfoList(personInfoList: List<PersonInfoDbModel>)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertPersonInfo(personInfo: PersonInfoDbModel)
 }

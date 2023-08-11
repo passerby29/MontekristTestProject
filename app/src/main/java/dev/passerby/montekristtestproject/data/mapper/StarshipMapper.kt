@@ -2,7 +2,9 @@ package dev.passerby.montekristtestproject.data.mapper
 
 import dev.passerby.montekristtestproject.data.models.db.StarshipInfoDbModel
 import dev.passerby.montekristtestproject.data.models.dto.StarshipInfoDto
+import dev.passerby.montekristtestproject.data.models.dto.StarshipsSearchDto
 import dev.passerby.montekristtestproject.domain.models.StarshipInfo
+import dev.passerby.montekristtestproject.domain.models.StarshipsSearch
 
 class StarshipMapper {
 
@@ -47,4 +49,40 @@ class StarshipMapper {
         starshipClass = dbModel.starshipClass,
         url = dbModel.url,
     )
+
+    fun mapDtoToEntity(dto: StarshipsSearchDto) = StarshipsSearch(
+        count = dto.count,
+        next = dto.next,
+        previous = dto.previous,
+        results = mapDtoListToEntity(dto.results)
+    )
+
+    private fun mapDtoListToEntity(dto: List<StarshipInfoDto>): List<StarshipInfo> {
+        val info = mutableListOf<StarshipInfo>()
+        for (dtoItem in dto) {
+            info.add(
+                StarshipInfo(
+                    dtoItem.MGLT,
+                    dtoItem.cargo_capacity,
+                    dtoItem.consumables,
+                    dtoItem.cost_in_credits,
+                    dtoItem.created,
+                    dtoItem.crew,
+                    dtoItem.edited,
+                    dtoItem.films,
+                    dtoItem.hyperdrive_rating,
+                    dtoItem.length,
+                    dtoItem.manufacturer,
+                    dtoItem.max_atmosphering_speed,
+                    dtoItem.model,
+                    dtoItem.name,
+                    dtoItem.passengers,
+                    dtoItem.pilots,
+                    dtoItem.starship_class,
+                    dtoItem.url,
+                )
+            )
+        }
+        return info
+    }
 }

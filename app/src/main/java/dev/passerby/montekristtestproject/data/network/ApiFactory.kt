@@ -1,6 +1,5 @@
-package com.example.cryptoapp.data.models.db
+package dev.passerby.montekristtestproject.data.network
 
-import dev.passerby.montekristtestproject.data.network.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

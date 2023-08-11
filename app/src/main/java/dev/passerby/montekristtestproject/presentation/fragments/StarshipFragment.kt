@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.passerby.montekristtestproject.R
 import dev.passerby.montekristtestproject.databinding.FragmentStarshipBinding
 import dev.passerby.montekristtestproject.presentation.adapters.starship.StarshipInfoAdapter
 import dev.passerby.montekristtestproject.presentation.viewmodels.MainViewModel
@@ -17,9 +18,7 @@ class StarshipFragment : Fragment() {
     private val binding: FragmentStarshipBinding
         get() = _binding ?: throw RuntimeException("FragmentStarshipBinding is null")
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
-    }
+    private val viewModel: MainViewModel by navGraphViewModels(R.id.navigation_main)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +37,8 @@ class StarshipFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             itemAnimator = null
         }
-        viewModel.starshipListInfo.observe(viewLifecycleOwner) {
-            starshipInfoAdapter.submitList(it)
+        viewModel.starshipsSearch.observe(viewLifecycleOwner) {
+            starshipInfoAdapter.submitList(it?.results)
         }
     }
 

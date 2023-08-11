@@ -59,6 +59,7 @@ class MainFragment : Fragment() {
                         with(viewModel) {
                             getPeopleSearch(searchText)
                             getPlanetsSearch(searchText)
+                            getStarshipsSearch(searchText)
                         }
                     }
                 }

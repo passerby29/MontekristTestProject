@@ -18,4 +18,8 @@
         android:id="@+id/planetFragment"
         android:name="dev.passerby.montekristtestproject.presentation.fragments.PlanetFragment"
         android:label="PlanetFragment" />
+    <fragment
+        android:id="@+id/starshipFragment"
+        android:name="dev.passerby.montekristtestproject.presentation.fragments.StarshipFragment"
+        android:label="StarshipFragment" />
 </navigation>

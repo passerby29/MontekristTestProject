@@ -4,10 +4,10 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.example.cryptoapp.data.models.db.ApiFactory
 import dev.passerby.montekristtestproject.Constants.TAG
 import dev.passerby.montekristtestproject.data.database.AppDatabase
 import dev.passerby.montekristtestproject.data.mapper.PlanetMapper
+import dev.passerby.montekristtestproject.data.network.ApiFactory
 import dev.passerby.montekristtestproject.domain.models.PlanetInfo
 import dev.passerby.montekristtestproject.domain.models.PlanetsSearch
 import dev.passerby.montekristtestproject.domain.repository.PlanetRepository

@@ -4,10 +4,10 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.example.cryptoapp.data.models.db.ApiFactory
 import dev.passerby.montekristtestproject.Constants.TAG
 import dev.passerby.montekristtestproject.data.database.AppDatabase
 import dev.passerby.montekristtestproject.data.mapper.PersonMapper
+import dev.passerby.montekristtestproject.data.network.ApiFactory
 import dev.passerby.montekristtestproject.domain.models.PeopleSearch
 import dev.passerby.montekristtestproject.domain.models.PersonInfo
 import dev.passerby.montekristtestproject.domain.repository.PersonRepository

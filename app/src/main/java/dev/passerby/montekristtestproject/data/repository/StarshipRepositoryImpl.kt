@@ -4,10 +4,12 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.example.cryptoapp.data.models.db.ApiFactory
+import dev.passerby.montekristtestproject.Constants.TAG
 import dev.passerby.montekristtestproject.data.database.AppDatabase
 import dev.passerby.montekristtestproject.data.mapper.StarshipMapper
+import dev.passerby.montekristtestproject.data.network.ApiFactory
 import dev.passerby.montekristtestproject.domain.models.StarshipInfo
+import dev.passerby.montekristtestproject.domain.models.StarshipsSearch
 import dev.passerby.montekristtestproject.domain.repository.StarshipRepository
 
 class StarshipRepositoryImpl(application: Application) : StarshipRepository {
@@ -15,7 +17,6 @@ class StarshipRepositoryImpl(application: Application) : StarshipRepository {
     private val starshipInfoDao = AppDatabase.getInstance(application).starshipInfoDao()
     private val apiService = ApiFactory.apiService
     private val starshipMapper = StarshipMapper()
-    private val TAG = "StarshipRepositoryImpl"
 
     override fun getStarshipInfoList(): LiveData<List<StarshipInfo>> {
         val starshipInfoList = starshipInfoDao.getStarshipInfoList()
@@ -30,6 +31,11 @@ class StarshipRepositoryImpl(application: Application) : StarshipRepository {
         return starshipInfoDao.getStarshipInfo(name).map {
             starshipMapper.mapDbModelToEntity(it)
         }
+    }
+
+    override suspend fun getStarshipsSearch(searchParam: String): StarshipsSearch {
+        val starshipsSearch = apiService.getStarshipsSearch(searchParam)
+        return starshipMapper.mapDtoToEntity(starshipsSearch)
     }
 
     override suspend fun loadStarshipData() {
